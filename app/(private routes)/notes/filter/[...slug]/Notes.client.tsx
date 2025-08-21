@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { fetchNotes } from "../../../../lib/api";
+import { fetchNotes } from "@/lib/api";
 import { FetchNotesResponse } from "@/lib/api";
 import {  useDebouncedCallback } from "use-debounce";
-import Pagination from "../../../../components/Pagination/Pagination";
-import NoteList from "../../../../components/NoteList/NoteList";
-import SearchBox from "../../../../components/SearchBox/SearchBox";
-import Loader from "../../../../components/Loader/Loader";
-import ErrorMessage from "../../../../components/ErrorMessage/ErrorMessage";
+import Pagination from "@/components/Pagination/Pagination";
+import NoteList from "@/components/NoteList/NoteList";
+import SearchBox from "@/components/SearchBox/SearchBox";
+import Loader from "@/components/Loader/Loader";
+import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import { NoteTag } from "@/types/note";
 import css from "./NotesClient.module.css";
 import Link from "next/link";
