@@ -9,6 +9,8 @@ type Props = {
 };
 
 export async function GET(request: Request, { params }: Props) {
+    console.log('888888888888888888') //todo: remove
+
   try {
     const cookieStore = await cookies();
     const { id } = await params;

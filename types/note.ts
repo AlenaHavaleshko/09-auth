@@ -9,10 +9,36 @@ export interface Note {
 
 export type NoteTag = 'Todo' | 'Work' | 'Personal' | 'Meeting' | 'Shopping';
 
-export const tags: string[] = ["Todo", "Work", "Personal", "Meeting", "Shopping"];
+export const tags: NoteTag[] = ["Todo", "Work", "Personal", "Meeting", "Shopping"];
 
 export interface NewNoteData {
  title: string;
   content: string;
   tag: NoteTag;
+}
+
+export type LoginRequestData = {
+ email: string
+ password: string
+}
+
+export type RegisterRequestData = {
+ email: string
+ password: string
+}
+
+export interface User {
+ username: string,
+ email: string,
+ avatar: string,
+}
+
+export type CheckSessionRequest = {
+  success: boolean;
+};
+
+export interface NotesHttpResponse {
+  totalPages: number;
+  notes: Note[];
+  tag?: string;
 }

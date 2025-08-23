@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { fetchNotes } from "@/lib/api";
-import { FetchNotesResponse } from "@/lib/api";
-import {  useDebouncedCallback } from "use-debounce";
+// import { fetchNotes } from "@/lib/api/clientApi";
+// import { NotesResponse } from "@/lib/api/";
+import { useDebouncedCallback } from "use-debounce";
 import Pagination from "@/components/Pagination/Pagination";
 import NoteList from "@/components/NoteList/NoteList";
 import SearchBox from "@/components/SearchBox/SearchBox";
@@ -13,9 +13,11 @@ import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import { NoteTag } from "@/types/note";
 import css from "./NotesClient.module.css";
 import Link from "next/link";
+import { NotesHttpResponse } from "@/lib/api/serverApi";
+import { fetchNotes } from "@/lib/api/clientApi";
 
 type NotesClientProps = {
-  initialData: FetchNotesResponse;
+  initialData: NotesHttpResponse;
   tag?: NoteTag | string;
 };
 
@@ -27,11 +29,11 @@ export default function NotesClient({ initialData, tag }: NotesClientProps) {
   const { data, isLoading, error, isError, isSuccess } = useQuery({
     queryKey: ["notes", tag, inputValue, currentPage],
     queryFn: () =>
-      fetchNotes({ 
-        tag: tag && tag !== "All" ? tag : undefined, 
-        search: inputValue, 
+      fetchNotes({
+        tag: tag && tag !== "All" ? tag : undefined,
+        search: inputValue,
         page: currentPage,
-        ...(tag !== 'All' && { tag }),
+        ...(tag !== "All" && { tag }),
       }),
     placeholderData: keepPreviousData,
     initialData,
@@ -47,10 +49,10 @@ export default function NotesClient({ initialData, tag }: NotesClientProps) {
 
   return (
     <>
-    {}
+      {}
       <div className={css.app}>
         <header className={css.toolbar}>
-          <SearchBox onSearch={changeInputValue}  />
+          <SearchBox onSearch={changeInputValue} />
           {isLoading && <Loader />}
           {isError && (
             <ErrorMessage
@@ -64,13 +66,13 @@ export default function NotesClient({ initialData, tag }: NotesClientProps) {
               onChange={setCurrentPage}
             />
           )}
-          <Link href="/notes/action/create" className={css.button} >
+          <Link href="/notes/action/create" className={css.button}>
             Create note +
           </Link>
         </header>
         {isSuccess && data?.notes?.length === 0 && (
           <div className={css.emptyState}>
-             <p>No notes found for your request.</p>
+            <p>No notes found for your request.</p>
           </div>
         )}
         {isSuccess && data?.notes && data?.notes.length > 0 && (

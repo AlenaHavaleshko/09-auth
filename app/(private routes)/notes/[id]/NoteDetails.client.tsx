@@ -2,9 +2,9 @@
 
 import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { fetchNoteById } from "@/lib/api";
+import { fetchNoteById } from "@/lib/api/api";
 import { useEffect, useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import css from "./NoteDetailsClient.module.css";
 
 const NoteDetailsClient = () => {
@@ -26,7 +26,7 @@ const NoteDetailsClient = () => {
   useEffect(() => {
     if (note) {
       const date = new Date(note.createdAt);
-      setFormattedDate(date.toLocaleString()); 
+      setFormattedDate(date.toLocaleString());
     }
   }, [note]);
 
@@ -39,16 +39,18 @@ const NoteDetailsClient = () => {
   }
 
   const handleGoBack = () => {
-    const isSure = confirm(' Are you sure?');
-    if(isSure) {
-      router.back()
+    const isSure = confirm(" Are you sure?");
+    if (isSure) {
+      router.back();
     }
   };
 
   return (
     <div className={css.container}>
       <div className={css.item}>
-        <button className={css.backBtn} onClick={handleGoBack}>Back</button>
+        <button className={css.backBtn} onClick={handleGoBack}>
+          Back
+        </button>
         <div className={css.header}>
           <h2>{note?.title}</h2>
         </div>

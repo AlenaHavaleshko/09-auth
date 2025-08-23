@@ -1,12 +1,12 @@
 "use client";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createNote } from "../../lib/api";
+import { createNote } from "../../lib/api/clientApi";
 import type { NewNoteData, NoteTag } from "../../types/note";
 import { tags } from "../../types/note";
 import { useId, useState } from "react";
 import * as Yup from "yup";
-import {useNoteDraftStore} from  '../../lib/store/noteStore' ;
+import { useNoteDraftStore } from "../../lib/store/noteStore";
 import { ValidationError } from "yup";
 import { useRouter } from "next/navigation";
 import css from "./NoteForm.module.css";
@@ -33,14 +33,18 @@ export default function NoteForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   // zustand
-  const { draft, setDraft, clearDraft} = useNoteDraftStore ();
+  const { draft, setDraft, clearDraft } = useNoteDraftStore();
 
-  const  handleChange = ( event:React.ChangeEvent <HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  const handleChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
-  setDraft ({
-    ...draft, [event.target.name]: event?.target.value,
-  });
-};
+    setDraft({
+      ...draft,
+      [event.target.name]: event?.target.value,
+    });
+  };
 
   const router = useRouter();
 
@@ -50,7 +54,7 @@ export default function NoteForm() {
       queryClient.invalidateQueries({
         queryKey: ["notes"],
       });
-      clearDraft ();
+      clearDraft();
       const tagToRedirect = draft.tag || "All";
       router.push(`/notes/filter/${tagToRedirect}`);
     },
@@ -83,7 +87,7 @@ export default function NoteForm() {
   };
 
   const handleCancel = () => {
-    router.back(); 
+    router.back();
   };
 
   return (
@@ -92,7 +96,8 @@ export default function NoteForm() {
         <div className={css.formGroup}>
           <label htmlFor={`${fieldId}-title`}>Title</label>
           <input
-            value = {draft?.title || ""}  onChange = {handleChange}
+            value={draft?.title || ""}
+            onChange={handleChange}
             id={`${fieldId}-title`}
             type="text"
             name="title"
@@ -104,7 +109,8 @@ export default function NoteForm() {
         <div className={css.formGroup}>
           <label htmlFor={`${fieldId}-content`}>Content</label>
           <textarea
-           value = {draft?.content || ""}   onChange = {handleChange}
+            value={draft?.content || ""}
+            onChange={handleChange}
             id={`${fieldId}-content`}
             name="content"
             rows={8}
@@ -117,7 +123,13 @@ export default function NoteForm() {
 
         <div className={css.formGroup}>
           <label htmlFor={`${fieldId}tag`}>Tag</label>
-          <select value = {draft?.tag}  onChange = {handleChange} id={`${fieldId}tag`} name="tag" className={css.select}>
+          <select
+            value={draft?.tag}
+            onChange={handleChange}
+            id={`${fieldId}tag`}
+            name="tag"
+            className={css.select}
+          >
             {tags.map((tag) => (
               <option key={tag} value={tag}>
                 {tag}
@@ -128,7 +140,11 @@ export default function NoteForm() {
         </div>
 
         <div className={css.actions}>
-          <button type="button" className={css.cancelButton} onClick={handleCancel}>
+          <button
+            type="button"
+            className={css.cancelButton}
+            onClick={handleCancel}
+          >
             Cancel
           </button>
           <button type="submit" className={css.submitButton} disabled={false}>

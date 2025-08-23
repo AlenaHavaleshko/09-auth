@@ -11,6 +11,7 @@ type Props = {
 export default function TagsMenu({ tags }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+  
 
   return (
     <div className={css.menuContainer}>

@@ -1,7 +1,8 @@
 // SSR компонент
 import type { Metadata } from "next";
-import { fetchNotes } from "@/lib/api";
+// import { fetchNotes } from "@/lib/api/clientApi";
 import NotesClient from "./Notes.client";
+import { fetchNotes } from "@/lib/api/serverApi";
 
 type Props = {
   params: Promise<{ slug?: string[] }>;
@@ -10,7 +11,8 @@ type Props = {
 // metadata
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).slug || [];
-  const tag = slug.length > 0 && slug[0].toLowerCase() !== "all" ? slug[0] : "All";
+  const tag =
+    slug.length > 0 && slug[0].toLowerCase() !== "all" ? slug[0] : "All";
 
   const pageTitle = `Notes – ${tag}`;
   const pageDescription = `Filtered notes by tag: ${tag}`;
@@ -39,20 +41,20 @@ export default async function NotesSlugPage({ params }: Props) {
   let tag: string | undefined = undefined;
 
   if (slug.length > 0 && slug[0].toLowerCase() !== "all") {
-    tag = slug[0]; 
+    tag = slug[0];
   }
 
   try {
-    const data = await fetchNotes({ tag: tag });
+    const data = await fetchNotes("", 1, tag);
+    console.log(data);
 
     return <NotesClient initialData={data} tag={tag} />;
   } catch (error) {
     console.log("Error fetching notes:", error);
-   return (
-    <div>
-      <p>Something went wrong while fetching the notes.</p>
-    </div>
-   )
+    return (
+      <div>
+        <p>Something went wrong while fetching the notes.</p>
+      </div>
+    );
   }
 }
-

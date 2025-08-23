@@ -1,4 +1,4 @@
-import { fetchNoteById } from "@/lib/api";
+import { fetchNoteById } from "@/lib/api/api";
 import NoteDetailsClient from "./NoteDetails.client";
 import {
   dehydrate,
@@ -13,7 +13,7 @@ type Props = {
 
 // metadata
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-   const note = await fetchNoteById((await params).id);
+  const note = await fetchNoteById((await params).id);
 
   if (!note) {
     return {
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const pageTitle = note.title;
-  const pageDescription  = `${note.content.slice(0, 100)}...`;
+  const pageDescription = `${note.content.slice(0, 100)}...`;
 
   return {
     title: pageTitle,
