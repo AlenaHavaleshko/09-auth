@@ -16,12 +16,9 @@ const AuthProvider = ({ children }: Props) => {
 
   //const pathname = usePathname();
   useEffect(() => {
-    console.log("Mounted — calling checkSession");
     const fetchUser = async () => {
       // Перевіряємо сесію
-      console.log("111");
       const isAuthenticated = await checkSession();
-      console.log(isAuthenticated);
       if (isAuthenticated) {
         // Якщо сесія валідна — отримуємо користувача
         const user = await usersMe();

@@ -16,11 +16,10 @@ export default function SignUp() {
   const setUser = useAuthStore((state) => state.setUser);
 
   const handlerSignUp = async (formData: FormData) => {
-    console.log("formData", formData);
     try {
       const formValues = Object.fromEntries(formData) as RegisterRequestData;
       const result = await signUp(formValues);
-      console.log("result", result);
+
 
       if (result) {
         // Записуємо користувача у глобальний стан

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { nextServer } from "./api";
 import type { Note, NewNoteData, LoginRequestData, RegisterRequestData, User, CheckSessionRequest } from "@/types/note";
-import { NotesHttpResponse } from "./serverApi";
+import { NotesHttpResponse } from "../../types/note";
 
 export interface FetchNotesParams {
   page?: number;
@@ -9,12 +9,6 @@ export interface FetchNotesParams {
   search?: string;
   tag?: string | undefined;
 }
-
-// export interface FetchNotesResponse {
-//   totalPages: number;
-//   notes: Note[];
-//   tag?: string;
-// }
 
 // получаем список всех ноутсов
 export async function fetchNotes({
@@ -81,6 +75,13 @@ export async function usersMe() {
 export async function logout (): Promise<void> {
   await nextServer.post('/auth/logout')
 };
+
+// edit profile
+export async function editUser(payload: { username: string }) {
+  const { data } = await nextServer.patch<User>('/users/me', payload);
+  return data;
+};
+
 
 
 

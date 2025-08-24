@@ -5,7 +5,6 @@ import { isAxiosError } from 'axios';
 import { logErrorResponse } from '../../api/_utils/utils';
 
 export async function GET(request: NextRequest) {
-  console.log('888888888888888888') //todo: remove
   try {
     const cookieStore = await cookies();
     const search = request.nextUrl.searchParams.get('search') ?? '';

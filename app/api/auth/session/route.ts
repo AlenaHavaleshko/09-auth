@@ -9,8 +9,6 @@ export async function GET() {
   try {
     const cookieStore = await cookies();
 
-    console.log(cookieStore);
-
     const accessToken = cookieStore.get("accessToken")?.value;
     const refreshToken = cookieStore.get("refreshToken")?.value;
 

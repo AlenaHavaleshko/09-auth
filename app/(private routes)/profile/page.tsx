@@ -1,12 +1,32 @@
 import Link from "next/link";
 import Image from 'next/image';
+import { Metadata } from 'next';
 import {usersServerMe} from '@/lib/api/serverApi';
 import css from "./ProfilePage.module.css";
+
+export const metadata: Metadata = {
+  title: 'Profile Page',
+  description: 'User profile page with account details and settings.',
+
+  openGraph: {
+      title: 'Profile Page',
+      description: "User profile page with account details and settings.",
+      url: "http://localhost:3000/profile",
+      siteName: "NoteHub",
+      images: [
+        {
+          url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+};
 
 export default async function Profile() {
 
   const user =  await usersServerMe();
-  
+
   return (
     <main className={css.mainContent}>
       <div className={css.profileCard}>

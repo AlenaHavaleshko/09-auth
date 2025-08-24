@@ -46,11 +46,9 @@ export default async function NotesSlugPage({ params }: Props) {
 
   try {
     const data = await fetchNotes("", 1, tag);
-    console.log(data);
 
     return <NotesClient initialData={data} tag={tag} />;
   } catch (error) {
-    console.log("Error fetching notes:", error);
     return (
       <div>
         <p>Something went wrong while fetching the notes.</p>

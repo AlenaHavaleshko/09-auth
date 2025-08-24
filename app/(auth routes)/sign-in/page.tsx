@@ -16,11 +16,9 @@ export default function SignIn() {
  const setUser = useAuthStore((state) => state.setUser);
 
   const handlerSignIn = async (formData: FormData) => {
-    console.log("formData", formData);
     try {
       const formValues = Object.fromEntries(formData) as LoginRequestData;
       const result = await signIn(formValues);
-      console.log("result", result);
       if (result) {
        // Записуємо користувача у глобальний стан
 	      setUser(result);

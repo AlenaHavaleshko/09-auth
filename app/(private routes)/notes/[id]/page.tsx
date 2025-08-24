@@ -1,4 +1,4 @@
-import { fetchNoteById } from "@/lib/api/api";
+import { fetchNoteById } from "@/lib/api/clientApi";
 import NoteDetailsClient from "./NoteDetails.client";
 import {
   dehydrate,
@@ -46,7 +46,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function NoteDetails({ params }: Props) {
   const { id } = await params;
-  console.log("res", id);
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
