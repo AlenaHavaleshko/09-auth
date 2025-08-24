@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-// import { fetchNotes } from "@/lib/api/clientApi";
-// import { NotesResponse } from "@/lib/api/";
 import { useDebouncedCallback } from "use-debounce";
 import Pagination from "@/components/Pagination/Pagination";
 import NoteList from "@/components/NoteList/NoteList";
@@ -13,7 +11,7 @@ import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import { NoteTag } from "@/types/note";
 import css from "./NotesClient.module.css";
 import Link from "next/link";
-import { NotesHttpResponse } from "@/lib/api/serverApi";
+import { NotesHttpResponse } from "@/types/note";
 import { fetchNotes } from "@/lib/api/clientApi";
 
 type NotesClientProps = {
