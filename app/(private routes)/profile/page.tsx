@@ -5,22 +5,37 @@ import {usersServerMe} from '@/lib/api/serverApi';
 import css from "./ProfilePage.module.css";
 
 export const metadata: Metadata = {
-  title: 'Profile Page',
-  description: 'User profile page with account details and settings.',
-
+  title: 'User Profile',
+  description:
+    'View and manage your personal information, profile photo, and account settings in NoteHub.',
   openGraph: {
-      title: 'Profile Page',
-      description: "User profile page with account details and settings.",
-      url: "http://localhost:3000/profile",
-      siteName: "NoteHub",
-      images: [
-        {
-          url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
-          width: 1200,
-          height: 630,
-        },
-      ],
-    },
+    title: 'User Profile',
+    description:
+      'View and manage your personal information, profile photo, and account settings in NoteHub.',
+    url: 'https://09-auth-nine-lilac.vercel.app/profile',
+    images: [
+      {
+        url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'notehub image',
+      },
+    ],
+    type: 'article',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NoteHub',
+    description: 'Take and organize notes easily with tags and instant search.',
+    images: [
+      {
+        url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'notehub image',
+      },
+    ],
+  },
 };
 
 export default async function Profile() {
@@ -38,7 +53,7 @@ export default async function Profile() {
         </div>
         <div className={css.avatarWrapper}>
           <Image
-            src="/profile-photo.png"
+            src={user.avatar}
             alt="User Avatar"
             width={120}
             height={120}

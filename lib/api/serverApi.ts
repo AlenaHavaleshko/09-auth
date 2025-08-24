@@ -1,4 +1,4 @@
-import { NotesHttpResponse } from "@/types/note";
+import { NotesHttpResponse, Note } from "@/types/note";
 import { User } from "@/types/user";
 import { cookies } from "next/headers";
 import { nextServer } from "./api";
@@ -49,3 +49,17 @@ export const fetchNotes = async (
   });
   return response.data;
 };
+
+// note ID
+export async function fetchNoteById(id: string): Promise<Note> {
+  const cookieStore = await cookies();
+  const headers = {
+    Cookie: cookieStore.toString(),
+  };
+
+  const response = await nextServer.get<Note>(`/notes/${id}`, {
+    headers,
+  });
+
+  return response.data;
+}

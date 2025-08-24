@@ -60,11 +60,8 @@ export async function middleware(request: NextRequest) {
       if (isPrivateRoute) {
         return NextResponse.redirect(new URL('/sign-in', request.url));
       }
-    
-
     }
   }
-
 
 export const config = {
   matcher: ['/profile/:path*', '/notes/:path*', '/sign-in', '/sign-up'],
