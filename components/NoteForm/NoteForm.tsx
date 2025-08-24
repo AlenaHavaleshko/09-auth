@@ -11,9 +11,9 @@ import { ValidationError } from "yup";
 import { useRouter } from "next/navigation";
 import css from "./NoteForm.module.css";
 
-// interface NoteFormProps {
-//   onClose: () => void; // якщо все добре, хочемо функцию, яка закриваэ модалку
-// }
+interface NoteFormProps {
+  onClose: () => void; // якщо все добре, хочемо функцию, яка закриваэ модалку
+}
 
 const NoteSchema = Yup.object({
   title: Yup.string()
@@ -26,7 +26,7 @@ const NoteSchema = Yup.object({
     .required("Required field"),
 });
 
-export default function NoteForm() {
+export default function NoteForm({ onClose }: NoteFormProps) {
   const fieldId = useId();
   const queryClient = useQueryClient();
 
