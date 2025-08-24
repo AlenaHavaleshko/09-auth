@@ -1,6 +1,7 @@
 import axios from "axios";
 import { nextServer } from "./api";
-import type { Note, NewNoteData, LoginRequestData, RegisterRequestData, User, CheckSessionRequest } from "@/types/note";
+import type { Note, NewNoteData, LoginRequestData, RegisterRequestData, CheckSessionRequest } from "@/types/note";
+import type { User} from "@/types/user";
 import { NotesHttpResponse } from "../../types/note";
 
 export interface FetchNotesParams {

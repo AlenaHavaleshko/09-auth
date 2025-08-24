@@ -1,4 +1,5 @@
-import { User, NotesHttpResponse } from "@/types/note";
+import { NotesHttpResponse } from "@/types/note";
+import { User } from "@/types/user";
 import { cookies } from "next/headers";
 import { nextServer } from "./api";
 

@@ -27,12 +27,6 @@ export type RegisterRequestData = {
  password: string
 }
 
-export interface User {
- username: string,
- email: string,
- avatar: string,
-}
-
 export type CheckSessionRequest = {
   success: boolean;
 };
