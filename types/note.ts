@@ -7,9 +7,9 @@ export interface Note {
  tag: NoteTag;
 }
 
-export type NoteTag = 'Todo' | 'Work' | 'Personal' | 'Meeting' | 'Shopping';
+export type NoteTag = 'Todo' | 'Work' | 'Personal' | 'Meeting' | 'Shopping' | 'Sport' | 'Traveling' | 'Events';
 
-export const tags: NoteTag[] = ["Todo", "Work", "Personal", "Meeting", "Shopping"];
+export const tags: NoteTag[] = ["Todo", "Work","Events", "Personal", "Meeting", "Shopping", "Sport", "Traveling" ];
 
 export interface NewNoteData {
  title: string;

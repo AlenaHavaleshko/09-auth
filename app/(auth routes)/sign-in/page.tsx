@@ -58,6 +58,7 @@ export default function SignIn() {
             type="password"
             name="password"
             className={css.input}
+            autoComplete="current-password"
             required
           />
         </div>
