@@ -32,7 +32,7 @@ export default function TagsMenu({ tags }: Props) {
           </li>
           {tags.map((tag) => (
             <li key={tag} className={css.menuItem}>
-              <Link href={`/notes/filter/${tag}`} onClick={toggle}>
+              <Link className={css.menuLink} href={`/notes/filter/${tag}`} onClick={toggle}>
                 {tag}
               </Link>
             </li>
